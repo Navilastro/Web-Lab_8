@@ -42,3 +42,42 @@ const requestCounter = (req, res, next) => {
 
 app.use(requestLogger);
 app.use(requestCounter);
+
+// --------------------
+
+const courses = [
+  { id: 1, title: "Web Programming", credits: 5 },
+  { id: 2, title: "Database Systems", credits: 6 },
+  { id: 3, title: "Operating Systems", credits: 6 }
+];
+
+app.get("/api/courses", (req, res) => {
+  res.json(courses);
+});
+
+app.get("/api/status", (req, res) => {
+  res.json({
+    status: "OK",
+    nodeVersion: process.version,
+    uptimeSeconds: Math.floor(process.uptime())
+  });
+});
+
+app.get("/api/headers", (req, res) => {
+  res.json({
+    userAgent: req.headers["user-agent"],
+    accept: req.headers["accept"]
+  });
+});
+
+app.post("/api/subscribe", (req, res) => {
+  res.status(201).json({ subscribed: true });
+});
+
+app.get("/api/admin", (req, res) => {
+  res.status(403).json({ error: "Forbidden" });
+});
+
+app.get("/api/stats", (req, res) => {
+  res.json({ requestsServed: requestCount });
+});
