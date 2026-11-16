@@ -26,3 +26,19 @@ app.get("/old-page", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
+
+let requestCount = 0;
+
+const requestLogger = (req, res, next) => {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] ${req.method} ${req.url}`);
+  next();
+};
+
+const requestCounter = (req, res, next) => {
+  requestCount++;
+  next();
+};
+
+app.use(requestLogger);
+app.use(requestCounter);
