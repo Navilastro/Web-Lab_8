@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Programme Server</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Study Programme Information System</h1>
+  <p>Welcome to our official study programme server. You can test all available API routes using the buttons below.</p>
+  
+  <div id="controls">
+    <button onclick="testRoute('/api/courses')">/api/courses</button>
+    <button onclick="testRoute('/api/status')">/api/status</button>
+    <button onclick="testRoute('/api/headers')">/api/headers</button>
+    <button onclick="testPostRoute('/api/subscribe')">POST /api/subscribe</button>
+    <button onclick="testRoute('/api/admin')">/api/admin</button>
+    <button onclick="testRoute('/api/stats')">/api/stats</button>
+    <button onclick="testRoute('/api/notfound')">404 Test</button>
+  </div>
+
+  <h2>Response Output:</h2>
+  <pre id="output">Click a button to see the response here...</pre>
+
+  <script src="app.js"></script>
+</body>
+</html>
